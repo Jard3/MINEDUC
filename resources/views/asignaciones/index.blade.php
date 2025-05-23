@@ -37,22 +37,23 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($asignaciones as $asignacion)
+            @foreach ($asignaciones as $asignacion)
                 <tr>
                     <td>{{ $asignacion->id_asignacion }}</td>
-                    <td>{{ $asignacion->inscripcion_codigo }}</td>
+                    <td>{{ $asignacion->inscripcion->codigo ?? 'N/A' }}</td>
                     <td>{{ $asignacion->escuela->nombre ?? 'N/A' }}</td>
                     <td>{{ $asignacion->seccion->nombre ?? 'N/A' }}</td>
                     <td>{{ $asignacion->grado->nombre ?? 'N/A' }}</td>
                     <td>{{ $asignacion->catedratico->nombre ?? 'N/A' }}</td>
                     <td>{{ $asignacion->curso->nombre ?? 'N/A' }}</td>
-                    <td class="d-flex flex-wrap gap-1">
-                        <a href="{{ route('asignaciones.show', $asignacion->id_asignacion) }}" class="btn btn-sm btn-info">Ver</a>
-                        <a href="{{ route('asignaciones.edit', $asignacion->id_asignacion) }}" class="btn btn-sm btn-warning">Editar</a>
-                        <form action="{{ route('asignaciones.destroy', $asignacion->id_asignacion) }}" method="POST" onsubmit="return confirm('¿Eliminar esta asignación?')" class="d-inline">
+                    <td>
+                        <a href="{{ route('asignaciones.show', $asignacion->id_asignacion) }}" class="btn btn-info btn-sm">Ver</a>
+                        <a href="{{ route('asignaciones.edit', $asignacion->id_asignacion) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ route('asignaciones.destroy', $asignacion->id_asignacion) }}" method="POST" class="d-inline"
+                              onsubmit="return confirm('¿Estás seguro de eliminar esta asignación?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
                 </tr>
