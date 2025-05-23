@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tutelar extends Model
 {
+    use HasFactory;
+
     protected $table = 'tutelares';
 
     // Ahora la PK es un campo entero autoincremental llamado 'id'

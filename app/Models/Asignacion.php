@@ -3,20 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Asignacion extends Model
 {
-    protected $table = 'asignacion'; // nombre exacto de la tabla
+    use HasFactory;
 
+    protected $table = 'asignacion';
     protected $primaryKey = 'id_asignacion';
+    public $timestamps = false;
 
-    public $incrementing = true;
-
-    protected $keyType = 'int';
-
-    public $timestamps = false; // Si la tabla no tiene columnas created_at / updated_at
-
-    // Campos asignables en masa
     protected $fillable = [
         'inscripcion_codigo',
         'escuela_id_escuela',
@@ -25,8 +21,6 @@ class Asignacion extends Model
         'catedratico_cui',
         'curso_id_curso',
     ];
-
-    // Relaciones
 
     public function inscripcion()
     {
